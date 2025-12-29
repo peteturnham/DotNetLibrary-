@@ -1,0 +1,121 @@
+using System;
+using System.Threading.Tasks;
+
+namespace RevitCodes.PipeRiserTagger
+{
+    /// <summary>
+    /// Simple C# scaffolding for a console-based scaffolding of a Pipe Riser Tagger.
+    /// Replace the TODOs with real Revit API integration when ready.
+    /// </summary>
+    public static class Program
+    {
+        public static async Task<int> Main(string[] args)
+        {
+            var app = new App();
+            try
+            {
+                return await app.RunAsync(args);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Fatal: {ex.Message}");
+                return -1;
+            }
+            finally
+            {
+                app.Dispose();
+            }
+        }
+    }
+
+    public sealed class App : IDisposable
+    {
+        private bool _disposed;
+
+        public App()
+        {
+            // Initialize logging, configuration, DI, etc. here.
+            Console.WriteLine("PipeRiserTagger starting...");
+        }
+
+        public async Task<int> RunAsync(string[] args)
+        {
+            // Basic argument handling
+            if (args.Length == 0 || args[0] == "--help" || args[0] == "-h")
+            {
+                ShowHelp();
+                return 0;
+            }
+
+            // Example: parse a command or path
+            var command = args[0].ToLowerInvariant();
+            switch (command)
+            {
+                case "tag":
+                    // Example: await tagging routine
+                    await TagPipesAsync(args);
+                    break;
+                case "preview":
+                    await PreviewAsync(args);
+                    break;
+                default:
+                    Console.WriteLine($"Unknown command: {command}");
+                    ShowHelp();
+                    return 2;
+            }
+
+            return 0;
+        }
+
+        private Task TagPipesAsync(string[] args)
+        {
+            // TODO: Replace with actual Revit API invocation inside a Revit add-in or external command.
+            Console.WriteLine("Tagging pipes... (scaffold)");
+            // Simulate async work
+            return Task.CompletedTask;
+        }
+
+        private Task PreviewAsync(string[] args)
+        {
+            Console.WriteLine("Previewing what will be tagged... (scaffold)");
+            return Task.CompletedTask;
+        }
+
+        private void ShowHelp()
+        {
+            Console.WriteLine("Usage:");
+            Console.WriteLine("  PipeRiserTagger tag [options]      - Tag pipe risers in the current document");
+            Console.WriteLine("  PipeRiserTagger preview            - Show changes without applying");
+            Console.WriteLine();
+            Console.WriteLine("Notes:");
+            Console.WriteLine("  This is scaffolding for a tool intended to run as a Revit add-in or external tool.");
+        }
+
+        public void Dispose()
+        {
+            if (_disposed) return;
+            // Clean up resources here
+            Console.WriteLine("PipeRiserTagger shutting down...");
+            _disposed = true;
+        }
+    }
+
+    // Example domain class - extend with actual logic and Revit types
+    public class PipeRiserTagger
+    {
+        public PipeRiserTagger()
+        {
+            // prepare state
+        }
+
+        /// <summary>
+        /// Discover risers and apply tags. Replace with Revit API code.
+        /// </summary>
+        public Task ApplyTagsAsync()
+        {
+            // TODO: Use FilteredElementCollector, Transaction, FamilySymbol lookup, Tag creation, etc.
+            Console.WriteLine("Applying riser tags (placeholder)...");
+            return Task.CompletedTask;
+        }
+    }
+} 
